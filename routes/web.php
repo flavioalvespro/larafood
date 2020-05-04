@@ -17,7 +17,11 @@ Route::get('admin/plans', 'Admin\PlanController@index')->name('plans.index');
 Route::get('admin/plans/create', 'Admin\PlanController@create')->name('plans.create');
 Route::any('admin/plans/search', 'Admin\PlanController@search')->name('plans.search');
 Route::get('admin/plans/{url}', 'Admin\PlanController@show')->name('plans.show');
+Route::get('admin/plans/edit/{url}', 'Admin\PlanController@edit')->name('plans.edit');
 Route::delete('admin/plans/{url}', 'Admin\PlanController@destroy')->name('plans.destroy');
+Route::put('admin/plans/{url}', 'Admin\PlanController@update')->name('plans.update');
+
+Route::get('admin', 'Admin\PlanController@index')->name('admin.index');
 
 Route::get('/', function () {
     return view('welcome');
