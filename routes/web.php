@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->namespace('Admin')->group(function(){
     
     /**
+     * Routes Profiles
+     */
+
+    
+    Route::resource('profiles', 'ACL\ProfileController');
+    
+    /**
      * routes details plan
      */
     Route::delete('plans/details/{url}/{idDetail}', 'DetailPlanController@delete')->name('details.plan.delete');
