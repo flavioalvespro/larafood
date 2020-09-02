@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->namespace('Admin')->group(function(){
     
     /**
+     * routes plan x profiles
+     */
+    Route::get('profiles/{id}/plan/{idPlan}/detach', 'ACL\PlanProfileController@detachPlanProfile')->name('plans.profiles.detach');
+    Route::post('profiles/{id}/plans', 'ACL\PlanProfileController@attachPlansProfile')->name('plans.profiles.attach');
+    Route::any('profiles/{id}/plans/create', 'ACL\PlanProfileController@plansAvailable')->name('plans.profiles.available');
+    Route::get('profiles/{id}/plans', 'ACL\PlanProfileController@profiles')->name('plans.profiles');
+    Route::get('plans/{id}/profiles', 'ACL\PlanProfileController@plans')->name('profiles.plans');
+
+    /**
      * routes permission x profiles
      */
     Route::get('profiles/{id}/permission/{idPermission}/detach', 'ACL\PermissionProfileController@detachPermissionProfile')->name('profiles.permission.detach');
