@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('admin')->namespace('Admin')->group(function(){
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware('auth')
+    ->group(function(){
     
     /**
      * routes plan x profiles
@@ -78,3 +81,8 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Auth routes
+ */
+Auth::routes();
