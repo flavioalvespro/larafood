@@ -52,12 +52,12 @@ Route::prefix('admin')
     /**
      * routes details plan
      */
+    Route::get('plans/details/{url}/create', 'DetailPlanController@create')->name('details.plan.create');
     Route::delete('plans/details/{url}/{idDetail}', 'DetailPlanController@delete')->name('details.plan.delete');
     Route::get('plans/details/{url}/{idDetail}', 'DetailPlanController@show')->name('details.plan.show');
     Route::put('plans/details/{url}/{idDetail}', 'DetailPlanController@update')->name('details.plan.update');
     Route::get('plans/details/edit/{url}/{idDetail}', 'DetailPlanController@edit')->name('details.plan.edit');
     Route::post('plans/details/{url}', 'DetailPlanController@store')->name('details.plan.store');
-    Route::get('plans/details/{url}/create', 'DetailPlanController@create')->name('details.plan.create');
     Route::get('plans/details/{url}', 'DetailPlanController@index')->name('details.plan.index');
 
     /**
@@ -78,6 +78,10 @@ Route::prefix('admin')
     Route::get('/', 'PlanController@index')->name('admin.index');
 });
 
+/**
+ * Site 
+ */
+Route::get('/plan/{url}', 'Site\SiteController@plan')->name('plan.subscription');
 Route::get('/', 'Site\SiteController@index')->name('site.home');
 
 /**

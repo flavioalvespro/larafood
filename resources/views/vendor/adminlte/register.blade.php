@@ -29,8 +29,45 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">{{ __('adminlte::adminlte.register_message') }}</p>
-                <form action="{{ $register_url }}" method="post">
+
+                <p>
+                    <strong>Plano: {{session('plan')->name ?? ''}}</strong>
+                </p>
+
+                <form action="{{ route('register') }}" method="post">
                     {{ csrf_field() }}
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="empresa" class="form-control {{ $errors->has('empresa') ? 'is-invalid' : '' }}" value="{{ old('empresa') }}"
+                               placeholder="Empresa" autofocus>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+
+                        @if ($errors->has('empresa'))
+                            <div class="invalid-feedback">
+                                <strong>{{ $errors->first('empresa') }}</strong>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" name="cnpj" class="form-control {{ $errors->has('cnpj') ? 'is-invalid' : '' }}" value="{{ old('cnpj') }}"
+                               placeholder="CNPJ" autofocus>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+
+                        @if ($errors->has('cnpj'))
+                            <div class="invalid-feedback">
+                                <strong>{{ $errors->first('cnpj') }}</strong>
+                            </div>
+                        @endif
+                    </div>
 
                     <div class="input-group mb-3">
                         <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') }}"
