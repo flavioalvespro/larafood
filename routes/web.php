@@ -20,9 +20,14 @@ Route::prefix('admin')
     /**
     * Routes Users
     */
-
     Route::any('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
+
+    /**
+    * Routes Categories
+    */
+    Route::any('categories/search', 'CategoryController@search')->name('categories.search');
+    Route::resource('categories', 'CategoryController');
 
     /**
      * routes plan x profiles
