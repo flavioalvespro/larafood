@@ -39,6 +39,12 @@ Route::prefix('admin')
     Route::resource('products', 'ProductController');
 
     /**
+    * Routes Tables
+    */
+    Route::any('tables/search', 'TableController@search')->name('tables.search');
+    Route::resource('tables', 'TableController');
+
+    /**
     * Routes Categories
     */
     Route::any('categories/search', 'CategoryController@search')->name('categories.search');
