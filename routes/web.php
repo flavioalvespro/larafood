@@ -16,7 +16,10 @@ Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
     ->group(function(){
-
+    
+    Route::get('test-acl', function(){
+        dd(auth()->user()->permissions());
+    });
     /**
      * routes product x category
      */
@@ -54,10 +57,13 @@ Route::prefix('admin')
      * routes plan x profiles
      */
     Route::get('profiles/{id}/plan/{idPlan}/detach', 'ACL\PlanProfileController@detachPlanProfile')->name('plans.profiles.detach');
+    Route::get('plans/{id}/profile/{idProfile}/detach', 'ACL\PlanProfileController@detachProfilePlan')->name('profiles.plans.detach');
     Route::post('profiles/{id}/plans', 'ACL\PlanProfileController@attachPlansProfile')->name('plans.profiles.attach');
+    Route::post('plans/{id}/profiles', 'ACL\PlanProfileController@attachProfilesPlan')->name('profiles.plans.attach');
     Route::any('profiles/{id}/plans/create', 'ACL\PlanProfileController@plansAvailable')->name('plans.profiles.available');
-    Route::get('profiles/{id}/plans', 'ACL\PlanProfileController@profiles')->name('plans.profiles');
-    Route::get('plans/{id}/profiles', 'ACL\PlanProfileController@plans')->name('profiles.plans');
+    Route::any('plans/{id}/profiles/create', 'ACL\PlanProfileController@profilesAvailable')->name('profiles.plans.available');
+    Route::get('profiles/{id}/plans', 'ACL\PlanProfileController@plans')->name('plans.profiles');
+    Route::get('plans/{id}/profiles', 'ACL\PlanProfileController@profiles')->name('profiles.plans');
 
     /**
      * routes permission x profiles

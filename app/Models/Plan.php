@@ -28,4 +28,19 @@ class Plan extends Model
         $results = $this->where('name', 'LIKE', '%'.$filter.'%')->orWhere('description', 'LIKE', '%'.$filter.'%')->paginate();
         return $results;
     }
+
+    public function profilesAvailable($filter = null)
+    {
+        $profiles = Profile::whereNotIn('id', function($query){
+            $query->select('plan_profile.profile_id');
+            $query->from('plan_profile');
+            $query->whereRaw("plan_profile.plan_id = {$this->id}");
+        })->where(function ($queryFilter) use ($filter){
+            if($filter)
+                $queryFilter->where('profiles.name', 'LIKE', "%{$filter}%");
+        })
+        ->paginate();
+
+        return $profiles;
+    }
 }

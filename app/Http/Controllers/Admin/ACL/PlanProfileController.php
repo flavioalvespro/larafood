@@ -56,6 +56,19 @@ class PlanProfileController extends Controller
         return view('admin.pages.profiles.plans.available', compact('profile', 'plans', 'filters'));
     }
 
+    public function profilesAvailable(Request $request, $idPlan)
+    {
+        if(!$plan = $this->plan->find($idPlan)){
+            return redirect()->back();
+        }
+
+        $filters = $request->except('_token');
+
+        $profiles = $plan->profilesAvailable($request->filter);
+
+        return view('admin.pages.plans.profiles.available', compact('plan', 'profiles', 'filters'));
+    }
+
     public function attachPlansProfile(Request $request, $idProfile)
     {
         if(!$profile = $this->profile->find($idProfile)){
@@ -71,6 +84,21 @@ class PlanProfileController extends Controller
         return redirect()->route('profiles.plans', $profile->id);
     }
 
+    public function attachProfilesPlan(Request $request, $idPlan)
+    {
+        if(!$plan = $this->plan->find($idPlan)){
+            return redirect()->back();
+        }
+
+        if(!$request->profiles || count($request->profiles) == 0){
+            return redirect()->back()->with('message', 'Precisa escolher pelo menos um perfil');
+        }
+
+        $plan->profiles()->attach($request->profiles);
+
+        return redirect()->route('plans.profiles', $plan->id);
+    }
+
     public function detachPlanProfile($idProfile, $idPlan)
     {
         $profile = $this->profile->find($idProfile);
@@ -83,6 +111,20 @@ class PlanProfileController extends Controller
         $profile->plans()->detach($plan);
 
         return redirect()->route('profiles.plans', $profile->id);
+    }
+
+    public function detachProfilePlan($idPlan, $idProfile)
+    {
+        $plan = $this->plan->find($idPlan);
+        $profile = $this->profile->find($idProfile);
+    
+        if(!$profile || !$plan){
+            return redirect()->back();
+        }
+
+        $plan->profiles()->detach($profile);
+
+        return redirect()->route('plans.profiles', $plan->id);
     }
 
 }

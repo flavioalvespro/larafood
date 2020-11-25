@@ -35,7 +35,7 @@ class Profile extends Model
 
     public function plansAvailable($filter = null)
     {
-        $permissions = Plan::whereNotIn('id', function($query){
+        $plans = Plan::whereNotIn('id', function($query){
             $query->select('plan_profile.plan_id');
             $query->from('plan_profile');
             $query->whereRaw("plan_profile.profile_id = {$this->id}");
@@ -45,6 +45,6 @@ class Profile extends Model
         })
         ->paginate();
 
-        return $permissions;
+        return $plans;
     }
 }

@@ -8,6 +8,7 @@
         <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Perfis</a></li>
         <li class="breadcrumb-item active"><a href="{{ route('plans.profiles', $plan->id) }}">Planos</a></li>
     </ol>
+    <h1>Perfis do Plano {{$plan->name}} <a href="{{ route('profiles.plans.available', $plan->id) }}" class="btn btn-dark"><i class="fas fa-plus-square"></i> Adicionar Novo Perfil</a></h1>
 @stop
 
 @section('content')
@@ -27,7 +28,7 @@
                                 {{ $profile->name }}
                             </td>
                             <td>
-                                <a href="{{ route('plans.profiles.detach', [$profile->id, $plan->id]) }}" class="btn btn-danger">Desvincular</a>
+                                <a href="{{ route('profiles.plans.detach', [$plan->id, $profile->id]) }}" class="btn btn-danger">Desvincular</a>
                             </td>
                         </tr>
                     @endforeach
