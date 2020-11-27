@@ -18,7 +18,7 @@ Route::prefix('admin')
     ->group(function(){
     
     Route::get('test-acl', function(){
-        dd(auth()->user()->permissions());
+        dd(auth()->user()->isAdmin());
     });
     /**
      * routes product x category
