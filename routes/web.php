@@ -17,9 +17,6 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function(){
     
-    Route::get('test-acl', function(){
-        dd(auth()->user()->isAdmin());
-    });
     /**
      * routes product x category
      */
@@ -34,6 +31,12 @@ Route::prefix('admin')
     */
     Route::any('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
+
+    /**
+    * Routes Tenants
+    */
+    Route::any('tenants/search', 'TenantController@search')->name('tenants.search');
+    Route::resource('tenants', 'TenantController');
 
     /**
     * Routes Products
@@ -84,7 +87,6 @@ Route::prefix('admin')
     /**
      * Routes Profiles
      */
-
     Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
     Route::resource('profiles', 'ACL\ProfileController');
     

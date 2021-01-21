@@ -209,10 +209,16 @@ return [
 
     'menu' => [
         [
-            'text' => 'Planos',
-            'url'  => 'admin/plans',
+            'text' => 'Empresas',
+            'url'  => 'admin/tenants',
             'icon' => 'fas fa-list-alt',
             'can'  => 'plans'
+        ],
+        [
+            'text' => 'Planos',
+            'url'  => 'admin/plans',
+            'icon' => 'fas fa-building',
+            'can'  => 'tenants'
         ],
         [
             'text' => 'Perfis',
