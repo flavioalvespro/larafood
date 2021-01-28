@@ -18,6 +18,12 @@ Route::prefix('admin')
     ->group(function(){
     
     /**
+     * Routes Roles
+     */
+    Route::any('roles/search', 'ACL\RoleController@search')->name('roles.search');
+    Route::resource('roles', 'ACL\RoleController');
+
+    /**
      * routes product x category
      */
     Route::get('products/{id}/category/{idCategory}/detach', 'CategoryProductController@detachCategoryProduct')->name('products.category.detach');

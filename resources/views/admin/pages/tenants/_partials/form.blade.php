@@ -23,11 +23,6 @@
     </select>
 </div>
 <hr>
-<h3>Assinatura</h3>
-<div class="form-group">
-    <label>Data de assinatura</label>
-    <input type="text" name="cnpj" class="form-control" placeholder="CNPJ:" value="{{ $tenant->cnpj ?? old('cnpj') }}">
-</div>
 <div class="form-group">
     <button type="submit" class="btn btn-dark">Enviar</button>
 </div>

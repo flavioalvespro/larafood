@@ -26,17 +26,16 @@ class StoreUpdateTenant extends FormRequest
         $id = $this->segment(3);
         
         $rules = [
-            'name' => ['required', 'min:3', 'max:255', 'unique:tenants,name,{$id},id'],
-            'email' => ['required', 'min:3', 'max:255', 'unique:tenants,email,{$id},id'],
-            'cnpj' => ['required', 'digits:14'],
-            'description' => ['required', 'min:3', 'max:10000'],
-            'logo' => ['required', 'logo']
+            'name' => ['required','string', 'min:3','max:255', "unique:tenants,name,{$id},id"],
+            'email' => ['required','string', "unique:tenants,email,{$id},id"],
+            'cnpj' => ['required', 'string', 'digits:14'],
+            'logo' => ['required', 'image']
         ];
 
         if($this->_method == 'PUT'){
-            $rules['logo'] = ['nullable', 'logo'];
+            $rules['logo'] = ['nullable', 'image'];
         }
-
+        
         return $rules;
     }
 }

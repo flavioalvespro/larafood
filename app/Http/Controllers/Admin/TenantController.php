@@ -79,17 +79,17 @@ class TenantController extends Controller
      */
     public function edit($id)
     {
-        if (!$product = $this->repository->find($id)) {
+        if (!$tenant = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        return view('admin.pages.products.edit', compact('product'));
+        return view('admin.pages.tenants.edit', compact('tenant'));
     }
 
     /**
      * update a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUpdateProduct  $request
+     * @param  \App\Http\Requests\StoreUpdateTenant  $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -98,7 +98,7 @@ class TenantController extends Controller
         if (!$tenant = $this->repository->find($id)) {
             return redirect()->back();
         }
-
+        
         $data = $request->all();
 
         if ($request->hasFile('logo') && $request->logo->isValid()) {
@@ -107,7 +107,7 @@ class TenantController extends Controller
                 Storage::delete($tenant->logo);
             }
 
-            $data['logo'] = $request->image->store("tenants/{$tenant->uuid}");
+            $data['logo'] = $request->logo->store("tenants/{$tenant->uuid}");
         }
         
         $tenant->update($data);
