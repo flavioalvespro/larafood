@@ -18,4 +18,5 @@ Route::group([
     Route::get('/products', 'ProductApiController@productsByTenant');
 
     Route::post('/client', 'Auth\RegisterController@store');
+    Route::post('/sanctum/token', 'Auth\AuthClientController@auth');
 });
