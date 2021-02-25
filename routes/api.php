@@ -1,6 +1,13 @@
 <?php
 
 Route::group([
+    'middleware' => ['auth:sanctum']
+], function() {
+    Route::get('/me', 'Api\Auth\AuthClientController@me');
+    Route::post('/auth/logout', 'Api\Auth\AuthClientController@logout');
+});
+
+Route::group([
     'prefix' => 'v1',
     'namespace' => 'Api'
 ], function(){
