@@ -26,4 +26,7 @@ Route::group([
 
     Route::post('/client', 'Auth\RegisterController@store');
     Route::post('/sanctum/token', 'Auth\AuthClientController@auth');
+
+    Route::post('orders', 'OrderApiController@store');
+    Route::post('orders/{identify}', 'OrderApiController@show');
 });
