@@ -60,4 +60,11 @@ class OrderRepository implements OrderRepositoryInterface
 
         $order->products()->attach($orderProducts);        
     }
+
+    public function getOrdersByClientId(int $idClient)
+    {
+        $orders = $this->entity->where('client_id', $idClient)->paginate();
+
+        return $orders;
+    }
 }
