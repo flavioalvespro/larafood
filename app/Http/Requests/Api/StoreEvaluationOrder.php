@@ -33,7 +33,7 @@ class StoreEvaluationOrder extends FormRequest
     public function rules()
     {
         return [
-            'starts' => ['required', 'integer', 'min:1', 'max:5'],
+            'stars' => ['required', 'integer', 'min:1', 'max:5'],
             'comment' => ['nullable', 'min:3', 'max:1000']
         ];
     }

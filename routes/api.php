@@ -32,5 +32,5 @@ Route::group([
     Route::get('/products', 'ProductApiController@productsByTenant');
 
     Route::post('orders', 'OrderApiController@store');
-    Route::post('orders/{identify}', 'OrderApiController@show');
+    Route::get('orders/{identify}', 'OrderApiController@show');
 });
