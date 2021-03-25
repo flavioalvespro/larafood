@@ -1,5 +1,8 @@
 <?php
 
+Route::post('/auth/register', 'Api\Auth\RegisterController@store');
+Route::post('/auth/token', 'Api\Auth\AuthClientController@auth');
+
 Route::group([
     'middleware' => ['auth:sanctum']
 ], function() {
@@ -27,9 +30,6 @@ Route::group([
 
     Route::get('/products/{identify}', 'ProductApiController@show');
     Route::get('/products', 'ProductApiController@productsByTenant');
-
-    Route::post('/client', 'Auth\RegisterController@store');
-    Route::post('/sanctum/token', 'Auth\AuthClientController@auth');
 
     Route::post('orders', 'OrderApiController@store');
     Route::post('orders/{identify}', 'OrderApiController@show');
